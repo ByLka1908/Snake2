@@ -12,14 +12,14 @@ namespace Snake2._0
 {
     public partial class Form1 : Form
     {
-        private int rI, rJ;
+        private int rX, rY;//Координаты фрукта
         private PictureBox fruit;//Фрукты
         private PictureBox[] snake = new PictureBox[400];//Змейка
         private Label labelScore;//Label счета
         private int dirX, dirY;//Движение по X Y
         private int _widht = 900;//Ширина окна
         private int _height= 800;//Высота окна
-        private int _sizeOfSides = 40;
+        private int _sizeOfSides = 40;//Разделение на клетки
         private int score = 0;
 
         public Form1()
@@ -85,15 +85,15 @@ namespace Snake2._0
         private void GenerateFruit()
         {
             Random r = new Random();
-            rI = r.Next(0, _height - _sizeOfSides);
-            int tempI = rI % _sizeOfSides;
-            rI -= tempI;
-            rJ = r.Next(0, _height - _sizeOfSides);
-            int tempJ = rJ % _sizeOfSides;
-            rJ -= tempJ;
-            rI++;
-            rJ++;
-            fruit.Location = new Point(rI, rJ);
+            rX = r.Next(0, _height - _sizeOfSides);
+            int tempI = rX % _sizeOfSides;
+            rX -= tempI;
+            rY = r.Next(0, _height - _sizeOfSides);
+            int tempJ = rY % _sizeOfSides;
+            rY -= tempJ;
+            rX++;
+            rY++;
+            fruit.Location = new Point(rX, rY);
             this.Controls.Add(fruit);
         }
 
@@ -162,7 +162,7 @@ namespace Snake2._0
         /// </summary>
         private void EatFruit()
         {
-            if(snake[0].Location.X == rI && snake[0].Location.Y == rJ)
+            if(snake[0].Location.X == rX && snake[0].Location.Y == rY)
             {
                 labelScore.Text = "Score: " + ++score;
                 snake[score] = new PictureBox();
