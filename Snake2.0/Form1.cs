@@ -21,7 +21,7 @@ namespace Snake2._0
         private int _height= 800;//Высота окна
         private int _sizeOfSides = 40;//Разделение на клетки
         private int score = 0;
-
+        private string Imagepath = @"C:\Users\QWER\source\repos\Snake2.0\Snake2.0\Image";
         public Form1()
         {
             InitializeComponent();
@@ -37,14 +37,16 @@ namespace Snake2._0
             labelScore.Location = new Point(810, 10);
             this.Controls.Add(labelScore);
 
+            #region Создание змейки
             snake[0] = new PictureBox();
             snake[0].Location = new Point(201, 201);
             snake[0].Size = new Size(_sizeOfSides - 1, _sizeOfSides - 1);
-            snake[0].BackColor = Color.Red;
+            snake[0].Image = new Bitmap(Imagepath + @"\HeadSnake.jpg");
             this.Controls.Add(snake[0]);
+            #endregion
 
             fruit = new PictureBox();
-            fruit.BackColor = Color.Yellow;
+            fruit.Image = new Bitmap(Imagepath + @"\Apple.png");
             fruit.Size = new Size(_sizeOfSides, _sizeOfSides);
 
             GenerateMap();
@@ -168,7 +170,7 @@ namespace Snake2._0
                 snake[score] = new PictureBox();
                 snake[score].Location = new Point(snake[score - 1].Location.X + 40 * dirX, snake[score - 1].Location.Y - 40 * dirY);
                 snake[score].Size = new Size(_sizeOfSides - 1, _sizeOfSides - 1);
-                snake[score].BackColor = Color.Red;
+                snake[score].Image = new Bitmap(Imagepath + @"\HeadSnake.jpg"); ;
                 this.Controls.Add(snake[score]);
                 GenerateFruit();
             }
